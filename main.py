@@ -95,7 +95,7 @@ class GlassesSpider(scrapy.Spider):
     def parse(self, response):
         product_urls = response.css(
             "div#product-tiles-container div.product-item div.item-top div.color-swatch a::attr(data-url)").extract()
-        for p in product_urls[0:2]:
+        for p in product_urls:
             url = urljoin(response.url, p)
             yield scrapy.Request(url, callback=self.parse_product, meta=response.meta)
 
